@@ -113,10 +113,10 @@ class EspeTaskList extends LitElement {
         color: var(--text-secondary, #666);
       }
       .form-actions button:hover {
-        background-color: #017f50; /* versión más oscura del accent */
+        background-color: #017f50;
       }
       .form-actions button[type="button"]:hover {
-        background-color: #a1a1a1; /* hover gris más oscuro */
+        background-color: #a1a1a1; 
       }
     `;
   }
@@ -362,22 +362,6 @@ class AppContainer extends LitElement {
                 time: '13:00',
                 priority: 'media',
                 date: 'hoy'
-            },
-            {
-                id: 3,
-                name: 'Presentación de la propuesta',
-                notes: 'Presentar la propuesta final al cliente.',
-                time: '09:00',
-                priority: 'alta',
-                date: 'mañana'
-            },
-            {
-                id: 4,
-                name: 'Revisión de código',
-                notes: 'Revisar el código de la implementación actual.',
-                time: '14:00',
-                priority: 'media',
-                date: 'mañana'
             }
         ];
         this.theme = 'dark';
@@ -428,6 +412,13 @@ class AppContainer extends LitElement {
             bubbles: true
         }));
     }
+    _sortByPriority() {
+        const priorityOrder = { alta: 1, media: 2, baja: 3 };
+        this.tasks = [...this.tasks].sort((a, b) => {
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+    }
+
 
     render() {
         return html`
@@ -449,9 +440,10 @@ class AppContainer extends LitElement {
                             <a class="tab active" href="#">
                                 <p class="tab-text">Por Fecha</p>
                             </a>
-                            <a class="tab" href="#">
-                                <p class="tab-text">Por Prioridad</p>
+                            <a class="tab" href="#" @click="${this._sortByPriority}">
+                              <p class="tab-text">Por Prioridad</p>
                             </a>
+
                             </div>
                         </div>
                         
