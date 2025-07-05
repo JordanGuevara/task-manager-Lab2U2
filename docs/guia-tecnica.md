@@ -25,26 +25,27 @@ Este documento describe la estructura técnica del proyecto **ESPE Task Manager*
    npm install webpack webpack-dev-server --save-dev
    npm install --save-dev html-webpack-plugin
    ```
-3. Iniciar el proyecto
-   ```bash
-       npm run serve
-   ```
 ## 4. Estructura del Proyecto
 ```
 ├── src/
 │   ├── components/
-|   |   ├── app-container.js
+│   │   ├── app-container.js
 │   │   ├── espe-task-list.js
+│   │   ├── espe-task-items.js
 │   │   ├── espe-add-task-button.js
 │   │   └── espe-header.js
-│   ├── index.js
-│   └── styles/
-│       └── style.css
-
+│   ├── styles/
+│   │   └── style.css
+│   └── docs/
+│       ├── capturas/
+│       └── guia-tecnica.md
+├── index.js
 ├── index.html
 ├── webpack.config.js
+├── package-lock.json
 ├── package.json
-└── guia-tecnica.md
+└── README.md
+
 ```
 
 ## 5. Comandos de Desarrollo
@@ -55,10 +56,11 @@ Este documento describe la estructura técnica del proyecto **ESPE Task Manager*
   Esto abre `http://localhost:8080` y recarga automáticamente al guardar cambios.
 
 ## 6. Componentes Principales
-- `<espe-app-container>`: componente raíz de la aplicación.
+- `<app-container>`: componente raíz de la aplicación.
 - `<espe-task-list>`: lista dinámica de tareas con edición y eliminación.
 - `<espe-add-task-button>`: botón flotante que abre el formulario para agregar nuevas tareas.
-
+- `<espe-task-items>`: para obtener o mostrar los diferentes items dentro de la tarea del mismo.
+- `<espe-header>`: encabezado de la pagina web donde se encuentra el cambio de tema de la página web.
 ## 7. Estilos y Temas
 La aplicación soporta dos temas: claro y oscuro. Estos temas cambian usando CSS Variables (`--bg-primary`, `--text-primary`, etc.) y un evento personalizado desde el header.
 
@@ -72,9 +74,6 @@ Esto crea la carpeta `dist/` con los recursos listos para despliegue.
 ## 9. Problemas Comunes
 - **MIME type error de CSS**: asegurarse de importar el CSS desde el `index.js` usando:
   ```js
-  import './styles/style.css';
+  import './css/style.css';
   ```
 - **Error 'already been defined'**: no definir dos veces un componente con el mismo nombre.
-
-## 10. Créditos
-Proyecto desarrollado por Jordan Guevara. LitElement, Webpack y Tailwind CSS utilizados como herramientas principales.
